@@ -1,6 +1,5 @@
 function factorial(n) {
   if (n < 0) {
-    alert(`Введите положительное число или ноль.`);
     return;
   } if (n > 1) {
     let i = n; 
