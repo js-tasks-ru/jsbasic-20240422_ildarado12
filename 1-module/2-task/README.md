@@ -18,11 +18,7 @@ function print(text) {
  * @returns {boolean}
  */
 function isValid(name) {
-    if ((name.length<4) || (name.includes(` `)) || (name == null)) {
-    return false;
-  } else {
-    return true;
-  }
+  // Ваш код ...
 }
 
 /**
