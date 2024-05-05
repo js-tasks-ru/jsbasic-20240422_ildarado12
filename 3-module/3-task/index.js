@@ -1,5 +1,5 @@
 function camelize(str) {
-  let arrPropCamel = property.split(`-`).map((word, index) => {
+  let arrPropCamel = str.split(`-`).map((word, index) => {
     let upperWord = ``;
     if (index > 0 && word.length > 0) {
       upperWord = word[0].toUpperCase();
