@@ -73,21 +73,23 @@ export default class Carousel {
   }
 
   customEvent() {
-    let carouselButton = this.elem.querySelector(`.carousel__button`);
-    carouselButton.addEventListener(`product-add`, ev => {
-      console.log(ev.detail);
+    let carouselInner = this.elem.querySelector(`.carousel__inner`);
+    carouselInner.addEventListener(`product-add`, ev => {
     });
-    carouselButton.addEventListener(`click`, ev => {
-      let dataId = ev.target.parentElement.parentElement.parentElement.getAttribute(`data-id`);
-      let slide = {
-        id: dataId,
-      };
+    carouselInner.addEventListener(`click`, ev => {
+      if (ev.target.parentElement.parentElement.parentElement.getAttribute(`data-id`)) {
+        let slide = {
+          id: ev.target.parentElement.parentElement.parentElement.getAttribute(`data-id`),
+        };
 
-      let MyEvent = new CustomEvent(`product-add`, {
-        detail: slide.id,
-        bubbles: true,
-      });
-      carouselButton.dispatchEvent(MyEvent);
+        let MyEvent = new CustomEvent(`product-add`, {
+          detail: slide.id,
+          bubbles: true,
+        });
+        carouselInner.dispatchEvent(MyEvent);
+      } else {
+        return;
+      }
     }
     );
   }
