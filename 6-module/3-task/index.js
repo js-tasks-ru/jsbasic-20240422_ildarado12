@@ -77,13 +77,10 @@ export default class Carousel {
     carouselInner.addEventListener(`product-add`, ev => {
     });
     carouselInner.addEventListener(`click`, ev => {
-      if (ev.target.parentElement.parentElement.parentElement.getAttribute(`data-id`)) {
-        let slide = {
-          id: ev.target.parentElement.parentElement.parentElement.getAttribute(`data-id`),
-        };
-
-        let MyEvent = new CustomEvent(`product-add`, {
-          detail: slide.id,
+      let id = ev.target.closest('[data-id]').dataset.id;
+      if (id) {
+        let MyEvent = new CustomEvent(`product-add`, { 
+          detail: id,
           bubbles: true,
         });
         carouselInner.dispatchEvent(MyEvent);
@@ -94,3 +91,23 @@ export default class Carousel {
     );
   }
 }
+
+
+
+/* let carouselInner = this.elem.querySelector(`.carousel__inner`);
+carouselInner.addEventListener(`product-add`, ev => {
+});
+carouselInner.addEventListener(`click`, ev => {
+  let id = ev.target.closest('[data-id]').dataset.id; // Получаем id
+
+  if (id) {
+    let MyEvent = new CustomEvent(`product-add`, {
+      detail: id,
+      bubbles: true,
+    });
+    this.elem.dispatchEvent(MyEvent); // Dispatch вызываем у корневого элемента
+  } else {
+    return;
+  }
+}
+); */
