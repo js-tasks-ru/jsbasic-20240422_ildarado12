@@ -48,8 +48,6 @@ export default class UserTable {
 
   addEventListeners() {
     this.elem.addEventListener(`click`, ev => {
-      console.log(ev.target.tagName);
-
       if (ev.target.tagName === `BUTTON`) {
         ev.target.parentElement.parentElement.remove();
       }
