@@ -39,10 +39,9 @@ export default class StepSlider {
   }
 
   changeSteps() {
-    let sliderElem = this.elem.querySelector(`.slider__thumb`).parentNode;
-    sliderElem.addEventListener(`click`, ev => {
-      let sliderPageX = sliderElem.getBoundingClientRect().x;
-      let sliderWidth = sliderElem.getBoundingClientRect().width;
+    this.elem.addEventListener(`click`, ev => {
+      let sliderPageX = this.elem.getBoundingClientRect().x;
+      let sliderWidth = this.elem.getBoundingClientRect().width;
       let leftPercents = Math.round((ev.clientX - sliderPageX) / sliderWidth * 100);
 
       this.sliderValue = Math.round(leftPercents / 100 * (this.steps - 1));
@@ -62,23 +61,22 @@ export default class StepSlider {
       let thumb = this.elem.querySelector('.slider__thumb');
       let progress = this.elem.querySelector('.slider__progress');
 
-      thumb.style.left = `${leftPercents}%`;
-      progress.style.width = `${leftPercents}%`;
+      let valuePercents = Math.round(this.sliderValue * 100 / (this.steps - 1));
+      thumb.style.left = `${valuePercents}%`;
+      progress.style.width = `${valuePercents}%`;
     });
   }
 
   castomEvent() {
-    let sliderElem = this.elem.querySelector(`.slider__thumb`).parentNode;
-
-    sliderElem.addEventListener(`slider-change`, ev => {
+    this.elem.addEventListener(`slider-change`, ev => {
     });
 
-    sliderElem.addEventListener(`click`, ev => {
+    this.elem.addEventListener(`click`, ev => {
       let MyEvent = new CustomEvent('slider-change', {
         detail: this.sliderValue,
         bubbles: true,
       });
-      sliderElem.dispatchEvent(MyEvent);
+      this.elem.dispatchEvent(MyEvent);
     });
   }
 }

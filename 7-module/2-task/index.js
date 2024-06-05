@@ -39,10 +39,9 @@ export default class Modal {
   }
 
   open() {
-    let containerElem = document.querySelector(`.container`);
     document.body.classList.add(`is-modal-open`);
 
-    return containerElem.append(this.elem);
+    return document.body.append(this.elem);
   }
 
   setTitle(title) {
@@ -59,8 +58,7 @@ export default class Modal {
   close() {
     document.removeEventListener('keydown', this.eventEsc);
 
-    let modalElem = document.querySelector(`.modal`);
-    document.querySelector(`.container`).removeChild(modalElem);
+    this.elem.remove();
 
     document.body.classList.remove(`is-modal-open`);
   } 
