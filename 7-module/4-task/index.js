@@ -75,13 +75,6 @@ export default class StepSlider {
 
       thumb.style.left = `${leftPercents}%`;
       progress.style.width = `${leftPercents}%`;
-
-      this.elem.dispatchEvent(
-        new CustomEvent('slider-change', {
-          detail: this.sliderValue,
-          bubbles: true
-        })
-      );
     };
 
     this.elem.addEventListener(`click`, (ev) => {
@@ -145,7 +138,6 @@ export default class StepSlider {
 
   castomEvent() {
     document.body.addEventListener(`slider-change`, function(ev) {
-      console.log(ev.detail);
     });
 
     this.elem.addEventListener(`pointerup`, () => {
